@@ -1,0 +1,385 @@
+@using BlogSpace.Client.Models
+@using BlogSpace.Client.Services
+@using Markdig
+@using Microsoft.AspNetCore.Components.Authorization
+@inject ISupabaseService SupabaseService
+@inject IGeminiService GeminiService
+@inject IToastService ToastService
+@inject NavigationManager NavigationManager
+
+<div class="h-full flex flex-col">
+    <!-- Header -->
+    <div class="border-b border-gray-200 p-4 bg-white">
+        <div class="flex items-center justify-between mb-4">
+            <input type="text"
+                   placeholder="Enter your post title..."
+                   @bind="title"
+                   @bind:event="oninput"
+                   class="text-2xl font-bold border-none outline-none flex-1 mr-4" />
+            
+            <div class="flex items-center space-x-2">
+                <button @onclick="ToggleAITools"
+                        class="p-2 text-purple-600 hover:text-purple-700 rounded-lg hover:bg-purple-50 transition-colors"
+                        title="AI Tools">
+                    <i class="fas fa-magic h-5 w-5"></i>
+                </button>
+                <button @onclick="TogglePreview"
+                        class="p-2 text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-100 transition-colors">
+                    @if (showPreview)
+                    {
+                        <i class="fas fa-eye-slash h-5 w-5"></i>
+                    }
+                    else
+                    {
+                        <i class="fas fa-eye h-5 w-5"></i>
+                    }
+                </button>
+            </div>
+        </div>
+
+        <!-- AI Tools -->
+        @if (showAITools)
+        {
+            <div class="mb-4 p-4 bg-purple-50 rounded-lg border border-purple-200">
+                <h3 class="text-sm font-semibold text-purple-900 mb-3 flex items-center">
+                    <i class="fas fa-magic h-4 w-4 mr-2"></i>
+                    AI-Powered Tools
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                    <button @onclick="HandleImproveContent"
+                            disabled="@saving"
+                            class="flex items-center space-x-2 px-3 py-2 bg-white border border-purple-300 rounded-lg text-purple-700 hover:bg-purple-100 transition-colors disabled:opacity-50">
+                        <i class="fas fa-lightbulb h-4 w-4"></i>
+                        <span>Improve Content</span>
+                    </button>
+                    <button @onclick="HandleGenerateKeywords"
+                            disabled="@saving"
+                            class="flex items-center space-x-2 px-3 py-2 bg-white border border-purple-300 rounded-lg text-purple-700 hover:bg-purple-100 transition-colors disabled:opacity-50">
+                        <i class="fas fa-search h-4 w-4"></i>
+                        <span>Generate SEO Keywords</span>
+                    </button>
+                </div>
+            </div>
+        }
+
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <!-- Visibility Selector -->
+                <div class="relative">
+                    <select @bind="visibility"
+                            class="appearance-none bg-white border border-gray-300 rounded-lg px-3 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="public">Public</option>
+                        <option value="followers">Followers Only</option>
+                        <option value="private">Private</option>
+                    </select>
+                    <div class="absolute right-2 top-3">
+                        @switch (visibility)
+                        {
+                            case "public":
+                                <i class="fas fa-globe h-4 w-4"></i>
+                                break;
+                            case "private":
+                                <i class="fas fa-lock h-4 w-4"></i>
+                                break;
+                            case "followers":
+                                <i class="fas fa-users h-4 w-4"></i>
+                                break;
+                        }
+                    </div>
+                </div>
+
+                <!-- Tags -->
+                <div class="flex items-center space-x-2">
+                    <input type="text"
+                           placeholder="Add tags..."
+                           @bind="tagInput"
+                           @bind:event="oninput"
+                           @onkeypress="HandleTagInputKeyPress"
+                           class="border border-gray-300 rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    <button @onclick="HandleAddTag"
+                            class="text-blue-600 text-sm font-medium hover:text-blue-700">
+                        Add
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <button @onclick="() => HandleSave(false)"
+                        disabled="@saving"
+                        class="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50">
+                    Save Draft
+                </button>
+                <button @onclick="() => HandleSave(true)"
+                        disabled="@saving"
+                        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50">
+                    @(saving ? "Publishing..." : "Publish")
+                </button>
+            </div>
+        </div>
+
+        <!-- Tags Display -->
+        @if (tags.Any())
+        {
+            <div class="flex flex-wrap gap-2 mt-3">
+                @foreach (var tag in tags)
+                {
+                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                        @tag
+                        <button @onclick="() => HandleRemoveTag(tag)"
+                                class="ml-1 text-blue-600 hover:text-blue-800">
+                            ×
+                        </button>
+                    </span>
+                }
+            </div>
+        }
+    </div>
+
+    <!-- Editor Content -->
+    <div class="flex-1 flex overflow-hidden">
+        @if (!showPreview)
+        {
+            <textarea @bind="content"
+                     @bind:event="oninput"
+                     placeholder="Start writing your amazing blog post..."
+                     class="w-full h-full p-6 resize-none border-none outline-none text-lg leading-relaxed font-mono">
+            </textarea>
+        }
+        else
+        {
+            <div class="w-full h-full overflow-auto">
+                <div class="flex h-full">
+                    <div class="w-1/2 p-6 border-r border-gray-200">
+                        <textarea @bind="content"
+                                 @bind:event="oninput"
+                                 placeholder="Start writing your amazing blog post..."
+                                 class="w-full h-full resize-none border-none outline-none text-lg leading-relaxed font-mono">
+                        </textarea>
+                    </div>
+                    <div class="w-1/2 p-6 overflow-auto">
+                        <div class="prose prose-lg max-w-none">
+                            @((MarkupString)RenderMarkdown(content))
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter] public string? InitialContent { get; set; }
+    [Parameter] public string? InitialTitle { get; set; }
+    [Parameter] public string? PostId { get; set; }
+    [Parameter] public EventCallback OnSave { get; set; }
+
+    private string content = string.Empty;
+    private string title = string.Empty;
+    private bool showPreview;
+    private string visibility = "public";
+    private List<string> tags = new();
+    private string tagInput = string.Empty;
+    private bool saving;
+    private bool showAITools;
+
+    protected override void OnInitialized()
+    {
+        content = InitialContent ?? string.Empty;
+        title = InitialTitle ?? string.Empty;
+    }
+
+    private void TogglePreview() => showPreview = !showPreview;
+    private void ToggleAITools() => showAITools = !showAITools;
+
+    private async Task HandleSave(bool publish)
+    {
+        if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(content))
+        {
+            ToastService.ShowError("Please fill in title and content");
+            return;
+        }
+
+        // Trim whitespace
+        title = title.Trim();
+        content = content.Trim();
+        
+        if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(content))
+        {
+            ToastService.ShowError("Title and content cannot be empty");
+            return;
+        }
+
+        // Check if user is authenticated
+        var session = await SupabaseService.GetSession();
+        if (session == null)
+        {
+            ToastService.ShowError("You must be logged in to create posts");
+            NavigationManager.NavigateTo("/signin");
+            return;
+        }
+
+        Console.WriteLine($"User authenticated: {session.Email}");
+
+        saving = true;
+        try
+        {
+            var slug = string.Join("-", title.ToLower().Split(new[] { ' ', '-', '_', '.', ',' }, StringSplitOptions.RemoveEmptyEntries));
+            slug = $"{slug}-{DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()}";
+
+            var summary = await GeminiService.GenerateBlogSummary(content);
+
+            var post = new Post
+            {
+                Title = title.Trim(),
+                Content = content,
+                Summary = summary,
+                Visibility = visibility,
+                Tags = tags,
+                Slug = slug,
+                Published = publish,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            };
+
+            if (!string.IsNullOrEmpty(PostId))
+            {
+                post.Id = PostId;
+                await SupabaseService.UpdatePost(post);
+                ToastService.ShowSuccess(publish ? "Post published!" : "Draft saved!");
+            }
+            else
+            {
+                await SupabaseService.CreatePost(post);
+                ToastService.ShowSuccess(publish ? "Post published!" : "Draft saved!");
+            }
+
+            await OnSave.InvokeAsync();
+        }
+        catch (Exception ex)
+        {
+            ToastService.ShowError("Failed to save post");
+            Console.Error.WriteLine($"Error saving post: {ex.Message}");
+        }
+        finally
+        {
+            saving = false;
+        }
+    }
+
+    private async Task HandleImproveContent()
+    {
+        if (string.IsNullOrWhiteSpace(content))
+        {
+            ToastService.ShowError("Please add some content first");
+            return;
+        }
+
+        saving = true;
+        try
+        {
+            content = await GeminiService.ImproveBlogContent(content, "make it more engaging and professional");
+            ToastService.ShowSuccess("Content improved with AI!");
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            ToastService.ShowError("Failed to improve content");
+            Console.Error.WriteLine($"Error improving content: {ex.Message}");
+        }
+        finally
+        {
+            saving = false;
+        }
+    }
+
+    private async Task HandleGenerateKeywords()
+    {
+        if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(content))
+        {
+            ToastService.ShowError("Please add title and content first");
+            return;
+        }
+
+        saving = true;
+        try
+        {
+            var keywords = await GeminiService.GenerateSEOKeywords(title, content);
+            
+            // Filter out any non-keyword responses
+            var validKeywords = keywords
+                .Where(keyword => 
+                    !string.IsNullOrWhiteSpace(keyword) && 
+                    keyword.Length < 50 && 
+                    !keyword.Contains("**") &&
+                    !keyword.Contains("Title:") &&
+                    !keyword.Contains("Content:") &&
+                    !keyword.Contains("Okay") &&
+                    !keyword.Contains("I need") &&
+                    !keyword.Contains("actual blog content") &&
+                    !keyword.StartsWith("*") &&
+                    !keyword.EndsWith("*"))
+                .Take(5)
+                .Where(keyword => !tags.Contains(keyword))
+                .ToList();
+                
+            if (validKeywords.Any())
+            {
+                tags.AddRange(validKeywords);
+                ToastService.ShowSuccess($"Generated {validKeywords.Count} SEO keywords!");
+            }
+            else
+            {
+                ToastService.ShowError("No valid keywords generated. Please try again.");
+            }
+            
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            ToastService.ShowError("Failed to generate keywords");
+            Console.Error.WriteLine($"Error generating keywords: {ex.Message}");
+        }
+        finally
+        {
+            saving = false;
+        }
+    }
+
+    private void HandleAddTag()
+    {
+        if (!string.IsNullOrWhiteSpace(tagInput) && !tags.Contains(tagInput.Trim()))
+        {
+            tags.Add(tagInput.Trim());
+            tagInput = string.Empty;
+            StateHasChanged();
+        }
+    }
+
+    private void HandleRemoveTag(string tag)
+    {
+        tags.Remove(tag);
+        StateHasChanged();
+    }
+
+    private void HandleTagInputKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            HandleAddTag();
+        }
+    }
+
+    private string RenderMarkdown(string markdown)
+    {
+        if (string.IsNullOrWhiteSpace(markdown))
+        {
+            return "<em>Start writing to see the preview...</em>";
+        }
+
+        var pipeline = new MarkdownPipelineBuilder()
+            .UseAdvancedExtensions()
+            .Build();
+
+        return Markdown.ToHtml(markdown, pipeline);
+    }
+} 

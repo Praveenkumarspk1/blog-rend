@@ -1,0 +1,169 @@
+@page "/explore"
+@using BlogSpace.Client.Services
+@using BlogSpace.Client.Components.Blog
+@inject ISupabaseService SupabaseService
+
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+    <!-- Sidebar -->
+    <div class="lg:col-span-1 space-y-6">
+        <!-- Search -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div class="relative">
+                <input type="text"
+                       placeholder="Search posts..."
+                       @bind="searchTerm"
+                       @bind:event="oninput"
+                       class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+            </div>
+        </div>
+
+        <!-- Trending -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div class="flex items-center space-x-2 mb-4">
+                <i class="fas fa-chart-line h-5 w-5 text-orange-500"></i>
+                <h3 class="font-semibold text-gray-900">Trending</h3>
+            </div>
+            <div class="space-y-3">
+                @foreach (var (post, index) in trendingPosts.Select((post, index) => (post, index)))
+                {
+                    <a href="/post/@post.Slug" class="block group">
+                        <div class="flex items-start space-x-3">
+                            <span class="text-2xl font-bold text-gray-300 group-hover:text-orange-500 transition-colors">
+                                @(index + 1)
+                            </span>
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
+                                    @post.Title
+                                </h4>
+                                <p class="text-sm text-gray-500 mt-1">
+                                    by Author
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+
+        <!-- Popular Tags -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div class="flex items-center space-x-2 mb-4">
+                <i class="fas fa-tag h-5 w-5 text-blue-500"></i>
+                <h3 class="font-semibold text-gray-900">Popular Tags</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+                @foreach (var tag in allTags)
+                {
+                    <button @onclick="() => SetSelectedTag(tag)"
+                            class="@GetTagButtonClass(tag)">
+                        @tag
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="lg:col-span-3">
+        @if (loading)
+        {
+            <div class="space-y-6">
+                @for (int i = 0; i < 3; i++)
+                {
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 animate-pulse">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-gray-300 rounded-full"></div>
+                            <div class="space-y-2">
+                                <div class="h-4 bg-gray-300 rounded w-24"></div>
+                                <div class="h-3 bg-gray-300 rounded w-16"></div>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="h-6 bg-gray-300 rounded w-3/4"></div>
+                            <div class="h-4 bg-gray-300 rounded w-full"></div>
+                            <div class="h-4 bg-gray-300 rounded w-2/3"></div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            @if (!filteredPosts.Any())
+            {
+                <div class="text-center py-12">
+                    <i class="fas fa-search h-12 w-12 text-gray-400 mx-auto mb-4"></i>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">No posts found</h3>
+                    <p class="text-gray-600">Try adjusting your search or filters</p>
+                </div>
+            }
+            else
+            {
+                <div class="space-y-6">
+                    @foreach (var post in filteredPosts)
+                    {
+                        <PostCard Post="post" />
+                    }
+                </div>
+            }
+        }
+    </div>
+</div>
+
+@code {
+    private List<Post> posts = new();
+    private bool loading = true;
+    private string searchTerm = string.Empty;
+    private string selectedTag = string.Empty;
+
+    private IEnumerable<Post> trendingPosts => posts.Take(5);
+
+    private IEnumerable<string> allTags => posts
+        .SelectMany(p => p.Tags ?? Enumerable.Empty<string>())
+        .Distinct()
+        .Take(20);
+
+    private IEnumerable<Post> filteredPosts => posts
+        .Where(post =>
+            (string.IsNullOrWhiteSpace(searchTerm) ||
+             post.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+             post.Summary?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) == true) &&
+            (string.IsNullOrWhiteSpace(selectedTag) ||
+             post.Tags?.Contains(selectedTag) == true));
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadPosts();
+    }
+
+    private async Task LoadPosts()
+    {
+        try
+        {
+            loading = true;
+            posts = await SupabaseService.GetPosts();
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error loading posts: {ex.Message}");
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+
+    private void SetSelectedTag(string tag)
+    {
+        selectedTag = selectedTag == tag ? string.Empty : tag;
+    }
+
+    private string GetTagButtonClass(string tag)
+    {
+        var baseClass = "inline-flex items-center px-2 py-1 rounded-full text-xs font-medium transition-colors";
+        return selectedTag == tag
+            ? $"{baseClass} bg-blue-600 text-white"
+            : $"{baseClass} bg-blue-100 text-blue-800 hover:bg-blue-200";
+    }
+} 

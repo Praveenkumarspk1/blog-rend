@@ -1,0 +1,245 @@
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Client.staticwebassets.runtime.json
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Client.staticwebassets.endpoints.json
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\appsettings.json
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\BlazorDebugProxy\BrowserDebugHost.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\BlazorDebugProxy\BrowserDebugHost.runtimeconfig.json
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\BlazorDebugProxy\BrowserDebugProxy.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\BlazorDebugProxy\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\BlazorDebugProxy\Microsoft.CodeAnalysis.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\BlazorDebugProxy\Newtonsoft.Json.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Server.staticwebassets.runtime.json
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Server.staticwebassets.endpoints.json
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Server.exe
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Server.deps.json
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Server.runtimeconfig.json
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Server.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Server.pdb
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Blazored.LocalStorage.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Blazored.Toast.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Supabase.Functions.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Supabase.Gotrue.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Humanizer.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Markdig.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Authorization.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Components.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Components.Forms.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Components.Web.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Components.WebAssembly.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Components.WebAssembly.Server.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Metadata.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.JSInterop.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.JSInterop.WebAssembly.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\MimeMapping.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Supabase.Postgrest.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Supabase.Realtime.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Supabase.Core.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Supabase.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Supabase.Storage.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\System.IO.Pipelines.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\System.Reactive.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\System.Runtime.Caching.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\Websocket.Client.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Client.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Shared.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Client.pdb
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Shared.pdb
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.csproj.AssemblyReference.cache
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.AssemblyInfoInputs.cache
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.AssemblyInfo.cs
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.csproj.CoreCompileInputs.cache
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.RazorAssemblyInfo.cache
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.RazorAssemblyInfo.cs
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\scopedcss\bundle\BlogSpace.Server.styles.css
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\staticwebassets.build.endpoints.json
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\staticwebassets\msbuild.BlogSpace.Server.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\staticwebassets\msbuild.BlogSpace.Server.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\staticwebassets\msbuild.build.BlogSpace.Server.props
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.BlogSpace.Server.props
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.BlogSpace.Server.props
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\BlogSpac.50CF6C52.Up2Date
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\refint\BlogSpace.Server.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.pdb
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.genruntimeconfig.cache
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\ref\BlogSpace.Server.dll
+C:\Users\prave\Desktop\blog vite - Copy\BlogSpace\Server\obj\Debug\net6.0\staticwebassets.upToDateCheck.txt
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\appsettings.json
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\BlazorDebugProxy\BrowserDebugHost.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\BlazorDebugProxy\BrowserDebugHost.runtimeconfig.json
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\BlazorDebugProxy\BrowserDebugProxy.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\BlazorDebugProxy\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\BlazorDebugProxy\Microsoft.CodeAnalysis.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\BlazorDebugProxy\Newtonsoft.Json.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Client.staticwebassets.runtime.json
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Client.staticwebassets.endpoints.json
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Server.staticwebassets.runtime.json
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Server.staticwebassets.endpoints.json
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Server.exe
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Server.deps.json
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Server.runtimeconfig.json
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Server.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Server.pdb
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Blazored.LocalStorage.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Blazored.Toast.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Supabase.Functions.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Supabase.Gotrue.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Humanizer.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Markdig.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Authorization.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Components.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Components.Forms.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Components.Web.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Components.WebAssembly.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Components.WebAssembly.Server.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Metadata.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.JSInterop.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.JSInterop.WebAssembly.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\MimeMapping.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Supabase.Postgrest.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Supabase.Realtime.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Supabase.Core.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Supabase.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Supabase.Storage.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\System.IO.Pipelines.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\System.Reactive.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\System.Runtime.Caching.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\Websocket.Client.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Client.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Shared.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Client.pdb
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\bin\Debug\net6.0\BlogSpace.Shared.pdb
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.csproj.AssemblyReference.cache
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.AssemblyInfoInputs.cache
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.AssemblyInfo.cs
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.csproj.CoreCompileInputs.cache
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.RazorAssemblyInfo.cache
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.RazorAssemblyInfo.cs
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.sourcelink.json
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\scopedcss\bundle\BlogSpace.Server.styles.css
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\staticwebassets.build.endpoints.json
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\staticwebassets\msbuild.BlogSpace.Server.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\staticwebassets\msbuild.BlogSpace.Server.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\staticwebassets\msbuild.build.BlogSpace.Server.props
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.BlogSpace.Server.props
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.BlogSpace.Server.props
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\staticwebassets.upToDateCheck.txt
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\BlogSpac.50CF6C52.Up2Date
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\refint\BlogSpace.Server.dll
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.pdb
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\BlogSpace.Server.genruntimeconfig.cache
+C:\Users\prave\Desktop\blogdot\BlogSpace\Server\obj\Debug\net6.0\ref\BlogSpace.Server.dll

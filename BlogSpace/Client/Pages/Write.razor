@@ -1,0 +1,44 @@
+@page "/write"
+@page "/write/{Id}"
+@using BlogSpace.Client.Services
+@using BlogSpace.Client.Components.Editor
+@using Microsoft.AspNetCore.Components.Authorization
+@inject ISupabaseService SupabaseService
+@inject NavigationManager NavigationManager
+@attribute [Authorize]
+
+<div class="container mx-auto px-4 py-8">
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold">@(Id == null ? "Write New Post" : "Edit Post")</h1>
+    </div>
+
+    <MarkdownEditor InitialContent="@content" InitialTitle="@title" PostId="@Id" OnSave="HandlePostSaved" />
+</div>
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    private string title = string.Empty;
+    private string content = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!string.IsNullOrEmpty(Id))
+        {
+            var post = await SupabaseService.GetPost(Id);
+            if (post != null)
+            {
+                title = post.Title;
+                content = post.Content;
+            }
+        }
+    }
+
+    private Task HandlePostSaved()
+    {
+        // Navigate back to dashboard or posts list after saving
+        NavigationManager.NavigateTo("/dashboard");
+        return Task.CompletedTask;
+    }
+} 

@@ -1,0 +1,222 @@
+﻿@inherits LayoutComponentBase
+@using BlogSpace.Client.Services
+@using BlogSpace.Client.Auth
+@using System.Security.Claims
+@inject ISupabaseService SupabaseService
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthStateProvider
+
+<div class="min-h-screen bg-gray-50">
+    <nav class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="/" class="text-2xl font-bold text-blue-600">BlogSpace</a>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <NavLink href="/"
+                                 class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                 ActiveClass="border-blue-500 text-gray-900">
+                            Home
+                        </NavLink>
+                        <NavLink href="/explore"
+                                 class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                 ActiveClass="border-blue-500 text-gray-900">
+                            Explore
+                        </NavLink>
+                        <NavLink href="/chat"
+                                 class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                 ActiveClass="border-blue-500 text-gray-900">
+                            AI Chat
+                        </NavLink>
+                        <AuthorizeView>
+                            <Authorized>
+                                <NavLink href="/following"
+                                         class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                         ActiveClass="border-blue-500 text-gray-900">
+                                    Following
+                                </NavLink>
+                                <NavLink href="/notifications"
+                                         class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                         ActiveClass="border-blue-500 text-gray-900">
+                                    Notifications
+                                </NavLink>
+                            </Authorized>
+                        </AuthorizeView>
+                    </div>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <AuthorizeView>
+                        <Authorized>
+                            <a href="/write"
+                               class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                                Write
+                            </a>
+                            <div class="ml-3 relative">
+                                <div>
+                                    <button @onclick="ToggleProfileMenu"
+                                            type="button"
+                                            class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                            id="user-menu-button"
+                                            aria-expanded="false"
+                                            aria-haspopup="true">
+                                        <span class="sr-only">Open user menu</span>
+                                        <img class="h-8 w-8 rounded-full"
+                                             src="https://api.dicebear.com/7.x/initials/svg?seed=@context.User.Identity?.Name"
+                                             alt="">
+                                    </button>
+                                </div>
+
+                                @if (showProfileMenu)
+                                {
+                                    <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                         role="menu"
+                                         aria-orientation="vertical"
+                                         aria-labelledby="user-menu-button"
+                                         tabindex="-1">
+                                        <button @onclick="NavigateToDashboard"
+                                                class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                           role="menuitem"
+                                           tabindex="-1"
+                                           id="user-menu-item-0">
+                                            Dashboard
+                                        </button>
+                                        <button @onclick="() => NavigateToProfile(context.User)"
+                                                class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                           role="menuitem"
+                                           tabindex="-1"
+                                           id="user-menu-item-1">
+                                            Profile
+                                        </button>
+                                        <button @onclick="NavigateToSettings"
+                                                class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                           role="menuitem"
+                                           tabindex="-1"
+                                           id="user-menu-item-2">
+                                            Settings
+                                        </button>
+                                        <button @onclick="HandleSignOut"
+                                                class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                                role="menuitem"
+                                                tabindex="-1"
+                                                id="user-menu-item-3">
+                                            Sign out
+                                        </button>
+                                    </div>
+                                }
+                            </div>
+                        </Authorized>
+                        <NotAuthorized>
+                            <a href="/signin"
+                               class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50">
+                                Sign in
+                            </a>
+                            <a href="/signup"
+                               class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                                Sign up
+                            </a>
+                        </NotAuthorized>
+                    </AuthorizeView>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        @Body
+    </main>
+
+    <!-- Floating Chat Button -->
+    <AuthorizeView>
+        <Authorized>
+            <div class="fixed bottom-6 right-6 z-50">
+                <button @onclick="NavigateToChat"
+                        class="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-all duration-200 transform hover:scale-110">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                    </svg>
+                </button>
+            </div>
+        </Authorized>
+    </AuthorizeView>
+</div>
+
+@code {
+    private bool showProfileMenu;
+
+    private void ToggleProfileMenu()
+    {
+        showProfileMenu = !showProfileMenu;
+    }
+
+    private async Task HandleSignOut()
+    {
+        try
+        {
+            await SupabaseService.SignOut();
+            ((CustomAuthStateProvider)AuthStateProvider).NotifyAuthenticationStateChanged();
+            NavigationManager.NavigateTo("/");
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error signing out: {ex.Message}");
+        }
+    }
+
+    private void NavigateToChat()
+    {
+        NavigationManager.NavigateTo("/chat");
+    }
+
+    private async Task NavigateToProfile(ClaimsPrincipal user)
+    {
+        try
+        {
+            showProfileMenu = false; // Close the menu
+            Console.WriteLine($"NavigateToProfile called for user: {user.Identity?.Name}");
+            var userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            Console.WriteLine($"User ID: {userId}");
+            
+            if (!string.IsNullOrEmpty(userId))
+            {
+                var profile = await SupabaseService.GetUserProfileById(userId);
+                Console.WriteLine($"Profile found: {profile?.Username}");
+                
+                if (profile != null)
+                {
+                    var profileUrl = $"/profile/{profile.Username}";
+                    Console.WriteLine($"Navigating to: {profileUrl}");
+                    NavigationManager.NavigateTo(profileUrl);
+                }
+                else
+                {
+                    Console.WriteLine("Profile not found, navigating to dashboard");
+                    NavigationManager.NavigateTo("/dashboard");
+                }
+            }
+            else
+            {
+                Console.WriteLine("User ID not found, navigating to dashboard");
+                NavigationManager.NavigateTo("/dashboard");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error navigating to profile: {ex.Message}");
+            NavigationManager.NavigateTo("/dashboard");
+        }
+    }
+
+    private void NavigateToSettings()
+    {
+        showProfileMenu = false; // Close the menu
+        NavigationManager.NavigateTo("/settings");
+    }
+
+    private void NavigateToDashboard()
+    {
+        showProfileMenu = false; // Close the menu
+        NavigationManager.NavigateTo("/dashboard");
+    }
+}

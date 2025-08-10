@@ -1,0 +1,122 @@
+@using BlogSpace.Client.Models
+@using BlogSpace.Client.Services
+@inject ISupabaseService SupabaseService
+
+<article class="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
+    <div class="p-6">
+        <!-- Author Info -->
+        <div class="flex items-center space-x-3 mb-4">
+            <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                @if (!string.IsNullOrEmpty(author?.AvatarUrl))
+                {
+                    <img src="@author.AvatarUrl"
+                         alt="@author.FullName"
+                         class="w-10 h-10 rounded-full object-cover" />
+                }
+                else
+                {
+                    <i class="fas fa-user h-5 w-5 text-white"></i>
+                }
+            </div>
+            <div>
+                <a href="/profile/@author?.Username"
+                   class="font-semibold text-gray-900 hover:text-blue-600 transition-colors">
+                    @(author?.FullName ?? "Unknown Author")
+                </a>
+                <div class="flex items-center space-x-2 text-sm text-gray-500">
+                    <i class="fas fa-calendar h-3 w-3"></i>
+                    <span>@GetTimeAgo(Post.CreatedAt)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Post Content -->
+        <a href="/post/@Post.Slug" class="block group">
+            <h2 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                @Post.Title
+            </h2>
+            @if (!string.IsNullOrEmpty(Post.Summary))
+            {
+                <p class="text-gray-600 mb-4 line-clamp-3">
+                    @Post.Summary
+                </p>
+            }
+        </a>
+
+        <!-- Tags -->
+        @if (Post.Tags?.Any() == true)
+        {
+            <div class="flex flex-wrap gap-2">
+                @foreach (var tag in Post.Tags)
+                {
+                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                        <i class="fas fa-tag h-3 w-3 mr-1"></i>
+                        @tag
+                    </span>
+                }
+            </div>
+        }
+
+        <!-- Actions -->
+        @if (ShowActions)
+        {
+            <div class="mt-4 flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <button class="flex items-center space-x-2 text-gray-500 hover:text-red-600 transition-colors">
+                        <i class="fas fa-heart h-4 w-4"></i>
+                        <span>24 likes</span>
+                    </button>
+                    <button class="flex items-center space-x-2 text-gray-500 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-comment h-4 w-4"></i>
+                        <span>8 comments</span>
+                    </button>
+                </div>
+                <div class="text-sm text-gray-500">
+                    @(new Random().Next(100, 1000)) views
+                </div>
+            </div>
+        }
+    </div>
+</article>
+
+@code {
+    [Parameter] public Post Post { get; set; } = null!;
+    [Parameter] public bool ShowActions { get; set; } = true;
+
+    private UserProfile? author;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!string.IsNullOrEmpty(Post.AuthorId))
+        {
+            try
+            {
+                author = await SupabaseService.GetUserProfileById(Post.AuthorId);
+            }
+            catch
+            {
+                // Author not found, will show "Unknown Author"
+            }
+        }
+    }
+
+    private string GetTimeAgo(DateTime date)
+    {
+        var span = DateTime.UtcNow - date;
+        
+        if (span.TotalDays > 365)
+            return $"{(int)(span.TotalDays / 365)} year{((int)(span.TotalDays / 365) == 1 ? "" : "s")} ago";
+        if (span.TotalDays > 30)
+            return $"{(int)(span.TotalDays / 30)} month{((int)(span.TotalDays / 30) == 1 ? "" : "s")} ago";
+        if (span.TotalDays > 7)
+            return $"{(int)(span.TotalDays / 7)} week{((int)(span.TotalDays / 7) == 1 ? "" : "s")} ago";
+        if (span.TotalDays >= 1)
+            return $"{(int)span.TotalDays} day{((int)span.TotalDays == 1 ? "" : "s")} ago";
+        if (span.TotalHours >= 1)
+            return $"{(int)span.TotalHours} hour{((int)span.TotalHours == 1 ? "" : "s")} ago";
+        if (span.TotalMinutes >= 1)
+            return $"{(int)span.TotalMinutes} minute{((int)span.TotalMinutes == 1 ? "" : "s")} ago";
+        
+        return "just now";
+    }
+} 

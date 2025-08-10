@@ -1,0 +1,87 @@
+﻿@page "/"
+@using BlogSpace.Client.Services
+@using BlogSpace.Client.Components.Blog
+@inject ISupabaseService SupabaseService
+
+<div class="container mx-auto px-4 py-8">
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-bold">Latest Posts</h1>
+        <div class="flex space-x-4">
+            <button @onclick='() => FilterPosts("all")'
+                    class="@GetFilterButtonClass(currentFilter == "all")">
+                All Posts
+            </button>
+            <button @onclick='() => FilterPosts("following")'
+                    class="@GetFilterButtonClass(currentFilter == "following")">
+                Following
+            </button>
+        </div>
+    </div>
+
+    @if (loading)
+    {
+        <div class="flex justify-center items-center h-64">
+            <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        </div>
+    }
+    else if (posts?.Any() != true)
+    {
+        <div class="text-center py-12">
+            <h2 class="text-xl font-semibold text-gray-600">No posts found</h2>
+            <p class="text-gray-500 mt-2">Start following some authors or create your own post!</p>
+        </div>
+    }
+    else
+    {
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach (var post in posts)
+            {
+                <PostCard Post="post" />
+            }
+        </div>
+    }
+</div>
+
+@code {
+    private List<Post>? posts;
+    private bool loading = true;
+    private string currentFilter = "all";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadPosts();
+    }
+
+    private async Task LoadPosts()
+    {
+        try
+        {
+            loading = true;
+            posts = currentFilter == "following"
+                ? await SupabaseService.GetFollowingPosts()
+                : await SupabaseService.GetPosts();
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error loading posts: {ex.Message}");
+            posts = new List<Post>();
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+
+    private async Task FilterPosts(string filter)
+    {
+        currentFilter = filter;
+        await LoadPosts();
+    }
+
+    private string GetFilterButtonClass(bool isActive)
+    {
+        return isActive
+            ? "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            : "px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors";
+    }
+}

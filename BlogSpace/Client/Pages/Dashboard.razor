@@ -1,0 +1,184 @@
+@page "/dashboard"
+@using BlogSpace.Client.Services
+@using BlogSpace.Client.Components.Blog
+@inject ISupabaseService SupabaseService
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+@inject IToastService ToastService
+
+<div class="container mx-auto px-4 py-8">
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-bold">Dashboard</h1>
+        <button @onclick='() => NavigationManager.NavigateTo("/write")'
+                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+            New Post
+        </button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Stats -->
+        <div class="col-span-1 space-y-4">
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-semibold mb-4">Stats</h2>
+                <div class="space-y-4">
+                    <div>
+                        <p class="text-gray-600">Total Posts</p>
+                        <p class="text-2xl font-bold">@(posts?.Count ?? 0)</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600">Published</p>
+                        <p class="text-2xl font-bold">@(posts?.Count(p => p.Published) ?? 0)</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-600">Drafts</p>
+                        <p class="text-2xl font-bold">@(posts?.Count(p => !p.Published) ?? 0)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Posts List -->
+        <div class="col-span-2">
+            <div class="bg-white rounded-lg shadow">
+                <div class="p-4 border-b">
+                    <div class="flex space-x-4">
+                        <button @onclick='() => FilterPosts("all")'
+                                class="@GetFilterButtonClass(currentFilter == "all")">
+                            All Posts
+                        </button>
+                        <button @onclick='() => FilterPosts("published")'
+                                class="@GetFilterButtonClass(currentFilter == "published")">
+                            Published
+                        </button>
+                        <button @onclick='() => FilterPosts("drafts")'
+                                class="@GetFilterButtonClass(currentFilter == "drafts")">
+                            Drafts
+                        </button>
+                    </div>
+                </div>
+
+                @if (loading)
+                {
+                    <div class="flex justify-center items-center h-64">
+                        <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+                    </div>
+                }
+                else if (filteredPosts?.Any() != true)
+                {
+                    <div class="text-center py-12">
+                        <h2 class="text-xl font-semibold text-gray-600">No posts found</h2>
+                        <p class="text-gray-500 mt-2">Start writing your first post!</p>
+                    </div>
+                }
+                else
+                {
+                    <div class="divide-y">
+                        @foreach (var post in filteredPosts)
+                        {
+                            <div class="p-4 hover:bg-gray-50 transition-colors">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="text-lg font-semibold mb-1">
+                                            <a href="@($"/post/{post.Slug}")" class="hover:text-blue-600">@post.Title</a>
+                                        </h3>
+                                        <p class="text-gray-600 text-sm mb-2">@post.CreatedAt.ToLocalTime().ToString("MMM dd, yyyy")</p>
+                                        <div class="flex items-center space-x-2">
+                                            @if (post.Published)
+                                            {
+                                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Published</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Draft</span>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button @onclick='() => NavigationManager.NavigateTo($"/write/{post.Id}")'
+                                                class="text-gray-600 hover:text-blue-600">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button @onclick="() => DeletePost(post.Id)"
+                                                class="text-gray-600 hover:text-red-600">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<Post>? posts;
+    private List<Post>? filteredPosts;
+    private bool loading = true;
+    private string currentFilter = "all";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadPosts();
+    }
+
+    private async Task LoadPosts()
+    {
+        try
+        {
+            loading = true;
+            var session = await SupabaseService.GetSession();
+            if (session == null)
+            {
+                NavigationManager.NavigateTo("/signin");
+                return;
+            }
+
+            posts = await SupabaseService.GetUserPosts(session.Id);
+            FilterPosts(currentFilter);
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error loading posts: {ex.Message}");
+            posts = new List<Post>();
+            filteredPosts = new List<Post>();
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+
+    private void FilterPosts(string filter)
+    {
+        currentFilter = filter;
+        filteredPosts = filter switch
+        {
+            "published" => posts?.Where(p => p.Published).ToList(),
+            "drafts" => posts?.Where(p => !p.Published).ToList(),
+            _ => posts?.ToList()
+        };
+    }
+
+    private string GetFilterButtonClass(bool isActive)
+    {
+        return isActive
+            ? "px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            : "px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors";
+    }
+
+    private async Task DeletePost(string id)
+    {
+        try
+        {
+            await SupabaseService.DeletePost(id);
+            await LoadPosts();
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error deleting post: {ex.Message}");
+        }
+    }
+} 

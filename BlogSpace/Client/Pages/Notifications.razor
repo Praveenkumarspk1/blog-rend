@@ -1,0 +1,224 @@
+@page "/notifications"
+@using BlogSpace.Client.Services
+@inject ISupabaseService SupabaseService
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthStateProvider
+
+<AuthorizeView>
+    <NotAuthorized>
+        <div class="text-center py-12">
+            <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-lock h-12 w-12 text-gray-400"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">Sign in required</h3>
+            <p class="text-gray-600 mb-6">Please sign in to see your notifications.</p>
+            <div class="flex justify-center space-x-4">
+                <a href="/signin"
+                   class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                    Sign In
+                </a>
+                <a href="/signup"
+                   class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors">
+                    Sign Up
+                </a>
+            </div>
+        </div>
+    </NotAuthorized>
+    <Authorized>
+        <div class="space-y-6">
+            <!-- Header -->
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold text-gray-900">Notifications</h1>
+                @if (notifications.Any())
+                {
+                    <button @onclick="MarkAllAsRead"
+                            class="text-blue-600 hover:text-blue-700 font-medium">
+                        Mark all as read
+                    </button>
+                }
+            </div>
+
+            @if (loading)
+            {
+                <div class="space-y-4">
+                    @for (int i = 0; i < 5; i++)
+                    {
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 animate-pulse">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-gray-300 rounded-full"></div>
+                                <div class="flex-1 space-y-2">
+                                    <div class="h-4 bg-gray-300 rounded w-3/4"></div>
+                                    <div class="h-3 bg-gray-300 rounded w-1/4"></div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                @if (!notifications.Any())
+                {
+                    <div class="text-center py-12">
+                        <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-bell h-12 w-12 text-gray-400"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">No notifications</h3>
+                        <p class="text-gray-600">You're all caught up!</p>
+                    </div>
+                }
+                else
+                {
+                    <div class="space-y-4">
+                        @foreach (var notification in notifications)
+                        {
+                            <div class="@GetNotificationClass(notification)">
+                                <div class="flex items-center space-x-4">
+                                    <!-- Actor Avatar -->
+                                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                                        @if (!string.IsNullOrEmpty(notification.Actor?.AvatarUrl))
+                                        {
+                                            <img src="@notification.Actor.AvatarUrl"
+                                                 alt="@notification.Actor.FullName"
+                                                 class="w-10 h-10 rounded-full object-cover" />
+                                        }
+                                        else
+                                        {
+                                            <i class="fas fa-user h-5 w-5 text-white"></i>
+                                        }
+                                    </div>
+
+                                    <!-- Content -->
+                                    <div class="flex-1">
+                                        <div class="flex items-center justify-between">
+                                            <div class="font-medium text-gray-900">
+                                                @GetNotificationText(notification)
+                                            </div>
+                                            <div class="text-sm text-gray-500">
+                                                @GetTimeAgo(notification.CreatedAt)
+                                            </div>
+                                        </div>
+                                        @if (!string.IsNullOrEmpty(notification.Summary))
+                                        {
+                                            <p class="text-gray-600 mt-1">@notification.Summary</p>
+                                        }
+                                    </div>
+                                </div>
+
+                                @if (!notification.Read)
+                                {
+                                    <button @onclick="() => MarkAsRead(notification)"
+                                            class="mt-2 text-sm text-blue-600 hover:text-blue-700">
+                                        Mark as read
+                                    </button>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+            }
+        </div>
+    </Authorized>
+</AuthorizeView>
+
+@code {
+    private List<Notification> notifications = new();
+    private bool loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        if (authState.User.Identity?.IsAuthenticated == true)
+        {
+            await LoadNotifications();
+        }
+    }
+
+    private async Task LoadNotifications()
+    {
+        try
+        {
+            loading = true;
+            notifications = await SupabaseService.GetNotifications();
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error loading notifications: {ex.Message}");
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+
+    private string GetNotificationClass(Notification notification)
+    {
+        var baseClass = "bg-white rounded-lg shadow-sm border border-gray-200 p-4 transition-colors";
+        return notification.Read
+            ? baseClass
+            : $"{baseClass} bg-blue-50";
+    }
+
+    private string GetNotificationText(Notification notification)
+    {
+        var actorName = notification.Actor?.FullName ?? "Someone";
+        
+        return notification.Type switch
+        {
+            "follow" => $"{actorName} started following you",
+            "like" => $"{actorName} liked your post",
+            "comment" => $"{actorName} commented on your post",
+            "mention" => $"{actorName} mentioned you in a post",
+            _ => $"{actorName} interacted with you"
+        };
+    }
+
+    private async Task MarkAsRead(Notification notification)
+    {
+        try
+        {
+            await SupabaseService.MarkNotificationAsRead(notification.Id);
+            notification.Read = true;
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error marking notification as read: {ex.Message}");
+        }
+    }
+
+    private async Task MarkAllAsRead()
+    {
+        try
+        {
+            await SupabaseService.MarkAllNotificationsAsRead();
+            foreach (var notification in notifications)
+            {
+                notification.Read = true;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error marking all notifications as read: {ex.Message}");
+        }
+    }
+
+    private string GetTimeAgo(DateTime date)
+    {
+        var span = DateTime.UtcNow - date;
+        
+        if (span.TotalDays > 365)
+            return $"{(int)(span.TotalDays / 365)} year{((int)(span.TotalDays / 365) == 1 ? "" : "s")} ago";
+        if (span.TotalDays > 30)
+            return $"{(int)(span.TotalDays / 30)} month{((int)(span.TotalDays / 30) == 1 ? "" : "s")} ago";
+        if (span.TotalDays > 7)
+            return $"{(int)(span.TotalDays / 7)} week{((int)(span.TotalDays / 7) == 1 ? "" : "s")} ago";
+        if (span.TotalDays >= 1)
+            return $"{(int)span.TotalDays} day{((int)span.TotalDays == 1 ? "" : "s")} ago";
+        if (span.TotalHours >= 1)
+            return $"{(int)span.TotalHours} hour{((int)span.TotalHours == 1 ? "" : "s")} ago";
+        if (span.TotalMinutes >= 1)
+            return $"{(int)span.TotalMinutes} minute{((int)span.TotalMinutes == 1 ? "" : "s")} ago";
+        
+        return "just now";
+    }
+} 
