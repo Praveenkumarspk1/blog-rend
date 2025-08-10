@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  blogspace:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:80;https://+:443
+      # Supabase Configuration
+      - SUPABASE__URL=https://lbyruzhwpsaoawgfqhog.supabase.co
+      - SUPABASE__KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxieXJ1emh3cHNhb2F3Z2ZxaG9nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMwMTA4NzgsImV4cCI6MjA2ODU4Njg3OH0.cDjpeKftS40e6mLz7J1wax_IEDWXXxKzGBRoHhKbQi0
+      # Gemini AI Configuration
+      - GEMINI__APIKEY=AIzaSyBOGimQBv8crtbTdpQGwIcnsgSbQ9h5C5E
+      - GEMINI__APIBASEURL=https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent
+      # JWT Configuration
+      - JWTSETTINGS__KEY=YourSuperSecretKeyHere_MakeItLongAndSecure_AtLeast32Characters
+      - JWTSETTINGS__ISSUER=BlogSpace
+      - JWTSETTINGS__AUDIENCE=BlogSpaceClient
+      - JWTSETTINGS__EXPIRYINMINUTES=60
+      # Database Configuration
+      - CONNECTIONSTRINGS__DEFAULTCONNECTION=Server=(localdb)\mssqllocaldb;Database=BlogSpace;Trusted_Connection=True;MultipleActiveResultSets=true
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    volumes:
+      # Mount certificates for HTTPS (uncomment and configure for production)
+      # - ./certs:/app/certs:ro
+      - app_data:/app/DataProtection-Keys
+
+  # Optional: Add SQL Server for production (uncomment if needed)
+  # sqlserver:
+  #   image: mcr.microsoft.com/mssql/server:2019-latest
+  #   environment:
+  #     - ACCEPT_EULA=Y
+  #     - SA_PASSWORD=YourStrongPassword123!
+  #   ports:
+  #     - "1433:1433"
+  #   volumes:
+  #     - sqlserver_data:/var/opt/mssql
+  #   restart: unless-stopped
+
+volumes:
+  sqlserver_data:
+  app_data:
